@@ -1,0 +1,74 @@
+<div class="container-fluid">
+	<div class="row"> 
+		<div class="col-md-6">   
+			<div class="form-group">
+				<label>Tablespace: </label> 
+				<select ng-model="tablespace" ng-options="tablespace.name for tablespace in tablespaces" class="form-control">
+					<option value="">-- choose Tablespace --</option>
+				</select><br>   
+			</div>
+			<div class="form-group">
+				<label>Partition Key: </label> 
+				<input type="text" ng-model="key" class="form-control"/>
+			</div>
+			<div class="form-group">
+				<label>SQL Queries: </label>
+				<textarea type="text" ng-model="sql" class="form-control"></textarea> 
+			</div>
+			<button ng-click="handleClickOnGoForIt(sql);" class="btn btn-danger btn-lg">Execute Query</button>     
+		</div>
+		 
+		<div class="col-md-6"> 
+			<div class="form-group"> 
+				<div class="checkbox">   
+					<label>
+						<input type="checkbox" ng-model="updateTable"> Update Table on Execute Query
+					</label>  
+				</div>
+			</div>
+			<table class="table table-hover table-bordered"> 
+				<thead class="">
+			    	<tr>
+				        <th>Tablespace</th>
+				        <th>Key</th>
+				        <th>SQL</th>
+				    </tr>      
+			    </thead>    
+			    <tbody>
+			    	<tr ng-repeat="query in queries" ng-click="handleRowSelection(query)">
+				        <td>{{query.tablespace}}</td>
+				        <td>{{query.key}}</td>
+				        <td>{{query.sql}}</td>
+				    </tr>   
+			    </tbody>
+			</table>  
+		     
+		    <div class="form-group">               
+				<p><textarea type="text" ng-model="tableAsJSON" class="form-control"></textarea></p>  
+				<button ng-click="importJSONTable(tableAsJSON);" class="btn btn-primary">put into table</button>  
+			</div>
+		</div>  
+	</div>   
+		
+	<div class="row"> 
+		<div class="col-md-4">
+			
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<label>Graph Type: </label>
+				<select ng-model="graphtype" class="form-control">
+		        	<option value="bar">Bar Chart</option>
+		        	<option value="line">Line Chart</option>
+					<option value="stacked-area">Stacked Area Chart</option>
+					<option value="pie">Pie Chart</option>
+		      </select>
+			</div>
+		</div>
+	</div>
+		
+	<div class="container-fluid bg-warning"> 	
+		<dashfigure datadef="data" piedata="pieData" type="type" class="container-fluid">  
+		</dashfigure>
+	</div>   
+</div>
