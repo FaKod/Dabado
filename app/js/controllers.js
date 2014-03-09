@@ -104,6 +104,7 @@ dasboardControllers.controller('sploutQuery', ['$scope', '$http', '$q', function
 
 	$http.get('demoSQL.json').then(function(res) {
 		$scope.importJSONTable(res.data);
+		$scope.tableAsJSON = angular.toJson($scope.queries);
 	});
 
 	$scope.handleRowSelection = function(row) {
