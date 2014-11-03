@@ -2,26 +2,28 @@
 
 /* App Module */
 
-var dashboardApp = angular.module('dashboardApp', [
-  'ngRoute',
-  'dashboardControllers',
-  'dashboardServices',
-  'dashboardDirectives',
-  'nvd3ChartDirectives'
+var dabadoApp = angular.module('dabadoApp', [
+    'ngRoute',
+    'dabadoControllers',
+    'dabadoServices',
+    'dabadoDirectives',
+    'nvd3ChartDirectives',
+    'ngTable',
+    'ui.bootstrap',
+    'customServices'
 ]);
 
-dashboardApp.config(['$routeProvider',
-  function($routeProvider) {
-    $routeProvider.
-      when('/dashboard', {
-        templateUrl: 'partials/dashboard.html',
-        controller: 'sploutQuery'
-      }).
-      /*when('/phones/:phoneId', {
-        templateUrl: 'partials/phone-detail.html',
-        controller: 'PhoneDetailCtrl'
-      }).*/
-      otherwise({
-        redirectTo: '/dashboard'
-      });
-  }]);
+dabadoApp.config(['$routeProvider',
+    function ($routeProvider) {
+        $routeProvider.
+            when('/dabado', {
+                templateUrl: 'partials/dabado.html',
+                controller: 'dabadoController'
+            }).
+            when('/dabado-chart-demo', {
+                templateUrl: 'partials/dabado-chart-demo.html'
+            }).
+            otherwise({
+                redirectTo: '/dabado'
+            });
+    }]);

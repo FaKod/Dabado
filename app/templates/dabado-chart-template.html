@@ -1,0 +1,80 @@
+<div class="well well-sm">
+
+    <div class="row">
+        <div class="col-md-4">
+            <p class="lead">{{graphname}}:</p>
+        </div>
+        <div class="col-md-2 pull-right">
+            <select ng-model="type" class="form-control">
+                <option value="bar">Bar Chart</option>
+                <option value="horbar">Horizontal Bar Chart</option>
+                <option value="line">Line Chart</option>
+                <option value="lineplusbar">Line + Bar Chart</option>
+                <option value="linefocus">Line with Focus Chart</option>
+                <option value="stacked-area">Stacked Area Chart</option>
+                <option value="pie">Pie Chart</option>
+                <option value="table">Table</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="col-md-4" ng-show="ranges[0] != undefined">
+                {{ranges[0].name}}:
+                <select ng-model="selectedRanges[0]"
+                        ng-options="value for value in ranges[0].values"
+                        class="form-control">
+                </select>
+            </div>
+            <div class="col-md-4" ng-show="ranges[1] != undefined">
+                {{ranges[1].name}}:
+                <select ng-model="selectedRanges[1]"
+                        ng-options="value for value in ranges[1].values"
+                        class="form-control">
+                </select>
+            </div>
+            <div class="col-md-4" ng-show="ranges[2] != undefined">
+                {{ranges[2].name}}:
+                <select ng-model="selectedRanges[2]"
+                        ng-options="value for value in ranges[2].values"
+                        class="form-control">
+                </select>
+            </div>
+        </div>
+        <div class="col-md-5 pull-right">
+            <div class="col-md-4" ng-show="sqlHasDateParameter">
+                From:<input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="dtFrom"
+                            datepicker-options="{formatYear: 'yyyy',startingDay: 1}"
+                            date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+            </div>
+            <div class="col-md-4" ng-show="sqlHasDateParameter">
+                To:<input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="dtTo"
+                          datepicker-options="{formatYear: 'yyyy',startingDay: 1}"
+                          date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+            </div>
+            <div class="col-md-2">
+                <div class="col-md-12">
+                    <div class="row">
+                        <button ng-click="handleClickOnGoForIt(chartData.sql);"
+                                class="btn btn-default glyphicon glyphicon-ok"
+                                ng-show="sqlHasDateParameter || sqlHasRangeParameter"></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button ng-click="dtFrom = undefined; dtTo = undefined;handleClickOnGoForIt(chartData.sql);"
+                                class="btn btn-default glyphicon glyphicon-remove"
+                                ng-show="sqlHasDateParameter"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <chart datadef="datadef" piedata="pieData" tabledata="tableData" rowtitles="rowTitles" type="{{type}}" show-controls="{{showControls}}"
+                   show-legend="{{showLegend}}" height="{{height}}" margin="{{margin}}">
+            </chart>
+        </div>
+    </div>
+</div>

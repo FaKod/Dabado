@@ -1,0 +1,21 @@
+<div class="container-fluid" xmlns="http://www.w3.org/1999/html" ng-controller="dabadoDataController">
+    <div class="page-header">
+        <h1><img src="img/chart.jpg" style="width:50px;height:50px"> DaBaDo Chart Demo</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <dabado-chart dash="default" chart="Population" show-legend="true" height="500" margin="{top: 1, right: 1, bottom: 1, left: 150}"></dabado-chart>
+        </div>
+        <div class="col-md-6">
+            <dabado-chart chart-data="data[1]" show-controls="true" height="500" margin="{top: 10, right: 10, bottom: 100, left: 100}"></dabado-chart>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <dabado-chart chart-data="data[2]" show-legend="true" height="500"></dabado-chart>
+        </div>
+        <div class="col-md-6">
+            <dabado-chart chart-data="data[0]" show-legend="false" height="500" margin="1"></dabado-chart>
+        </div>
+    </div>
+</div>

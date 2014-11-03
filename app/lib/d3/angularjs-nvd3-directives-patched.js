@@ -727,7 +727,7 @@ function configureLegend(chart, scope, attrs){
     }
 function initializeMargin(scope, attrs){
         'use strict';
-        var margin = (scope.$eval(attrs.margin) || {left: 50, top: 50, bottom: 50, right: 50});
+        var margin = (scope.$eval(attrs.margin) || {left: 100, top: 100, bottom: 100, right: 100});
         if (typeof(margin) !== "object") {
             // we were passed a vanilla int, convert to full margin object
             margin = {left: margin, top: margin, bottom: margin, right: margin};
@@ -788,7 +788,7 @@ function initializeMargin(scope, attrs){
                     rightalignyaxis: '@',
                     defaultstate: '@',
                     nodata: '@',
-                    margin: '&',
+                    margin: '@',
                     tooltipcontent: '&',
                     color: '&',
                     x: '&',
@@ -1091,8 +1091,9 @@ function initializeMargin(scope, attrs){
                     showlegend: '@',
                     tooltips: '@',
                     showcontrols: '@',
+                    controlsdata: '&',
                     nodata: '@',
-                    margin: '&',
+                    margin: '@',
                     tooltipcontent: '&',
                     color: '&',
                     x: '&',
@@ -1213,6 +1214,10 @@ function initializeMargin(scope, attrs){
                                         .clipEdge(attrs.clipedge === undefined ? false : (attrs.clipedge === "true"))
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
 
+                                    if (attrs.controlsdata) {
+                                        chart.controlsData(scope.$eval(attrs.controlsdata));
+                                    }
+
                                     if (chart.useInteractiveGuideline) {
                                         chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === "true"));
                                     }
@@ -1302,7 +1307,7 @@ function initializeMargin(scope, attrs){
                     reducexticks: '@',
                     staggerlabels: '@',
                     rotatelabels: '@',
-                    margin: '&',
+                    margin: '@',
                     x: '&',
                     y: '&',
                     //forcex is not exposed in the nvd3 multibar.js file.  it is not here on purpose.
@@ -1731,7 +1736,7 @@ function initializeMargin(scope, attrs){
                     tooltipcontent: '&',
                     color: '&',
                     showcontrols: '@',
-                    margin: '&',
+                    margin: '@',
                     nodata: '@',
                     x: '&',
                     y: '&',
@@ -1808,7 +1813,7 @@ function initializeMargin(scope, attrs){
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('data', function(data){
+                    var unwatch = scope.$watch('data', function(data){
                         if(data){
                             //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                             if(scope.chart){
@@ -1853,6 +1858,14 @@ function initializeMargin(scope, attrs){
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+
+                    element.on('$destroy', function() {
+                        scope.chart = undefined;
+                        unwatch();
+                        angular.forEach(element.children(), function(child) {
+                            angular.element(child).remove();
+                        });
+                    });
                 }
             };
         }])
@@ -1870,7 +1883,7 @@ function initializeMargin(scope, attrs){
                     pieLabelsOutside: '@',
                     labelType: '@',
                     nodata: '@',
-                    margin: '&',
+                    margin: '@',
                     x: '&',
                     y: '&',
                     color: '&',
@@ -2233,7 +2246,7 @@ function initializeMargin(scope, attrs){
                     rightalignyaxis: '@',
                     defaultstate: '@',
                     nodata: '@',
-                    margin: '&',
+                    margin: '@',
                     tooltipcontent: '&',
                     color: '&',
                     x: '&',
@@ -2327,7 +2340,7 @@ function initializeMargin(scope, attrs){
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('data', function(data){
+                    var unwatch = scope.$watch('data', function(data){
                         if(data){
                             //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                             if(scope.chart){
@@ -2376,6 +2389,14 @@ function initializeMargin(scope, attrs){
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+
+                    element.on('$destroy', function() {
+                        scope.chart = undefined;
+                        unwatch();
+                        angular.forEach(element.children(), function(child) {
+                            angular.element(child).remove();
+                        });
+                    });
                 }
             };
         }])
@@ -2396,7 +2417,7 @@ function initializeMargin(scope, attrs){
                     rightalignyaxis: '@',
                     defaultstate: '@',
                     nodata: '@',
-                    margin: '&',
+                    margin: '@',
                     margin2: '&',
                     tooltipcontent: '&',
                     color: '&',
@@ -2517,7 +2538,7 @@ function initializeMargin(scope, attrs){
                     };
                 }],
                 link: function(scope, element, attrs){
-                    scope.$watch('data', function(data){
+                    var unwatch = scope.$watch('data', function(data){
                         if(data){
                             //if the chart exists on the scope, do not call addGraph again, update data and call the chart.
                             if(scope.chart){
@@ -2588,6 +2609,14 @@ function initializeMargin(scope, attrs){
                             });
                         }
                     }, (attrs.objectequality === undefined ? false : (attrs.objectequality === "true")));
+
+					element.on('$destroy', function() {
+						scope.chart = undefined;
+						unwatch();
+						angular.forEach(element.children(), function(child) {
+							angular.element(child).remove();
+						});
+					});
                 }
             };
         }])

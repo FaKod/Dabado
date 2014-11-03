@@ -250,7 +250,7 @@ main(process.argv);
 var port = 9099;
 var options = {
     router: {
-        "localhost/splout/": "hadoop-master-1.hc.lan:4412",
+        "localhost/splout/": "localhost:4412/api/",
         "localhost": "localhost:8000"
     }
 };
