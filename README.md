@@ -12,7 +12,7 @@ It provides:
 * Simple support for date and range selection dropdowns
 
 ## Example Dashboard
-![Example Dashboard](https://bytebucket.org/fakod/dabado/raw/0e36bf6db224eeb11d16cebe5a40c626fdcf7db4/ChartDemoScreenshot.png?token=b362361e539b9527827437309de4ad3efef34da4)
+![Example Dashboard](https://raw.githubusercontent.com/FaKod/Dabado/master/ChartDemoScreenshot.png)
 
 # Installation
 
