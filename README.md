@@ -12,7 +12,7 @@ It provides:
 * Simple support for date and range selection dropdowns
 
 # Additional Information
-* [Charting for Splout with AngularJS and NVD3.js](http://blog.fakod.eu/2014/11/26/charting-splout-angularjs-nvd3-js/)
+* [Charting for Splout with AngularJS and NVD3.js](http://blog.fakod.eu/2014/11/30/charting-splout-angularjs-nvd3-js/)
 
 ## Example Dashboard
 ![Example Dashboard](https://raw.githubusercontent.com/FaKod/Dabado/master/ChartDemoScreenshot.png)
